@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  sons-of-the-forest:
+    image: slymer29/gnp-sons-of-the-forest:latest
+    container_name: gnp-sons-of-the-forest
+    restart: unless-stopped
+    ports:
+      - "8766:8766/udp"
+      - "27016:27016/udp"
+      - "9700:9700/udp"
+    environment:
+      GNP_TZ: "Europe/Paris"
+      GNP_STEAM_APP_ID: "2465200"
+      GNP_STEAM_USER: "anonymous"
+      GNP_GAME_UPDATE: "true"
+      GNP_FORCE_PLATFORM_WINDOWS: "true"
+      GNP_WINETRICKS_RUN: "vcrun2022 corefonts sound=disabled"
+      GNP_SERVER_NAME: "Mon_serveur_SOTF"
+      GNP_SERVER_PASSWORD: ""
+      GNP_IP_ADDRESS: "0.0.0.0"
+      GNP_GAME_PORT: "8766"
+      GNP_QUERY_PORT: "27016"
+      GNP_BLOB_SYNC_PORT: "9700"
+      GNP_MAX_PLAYERS: "8"
+      GNP_LAN_ONLY: "false"
+      GNP_SAVE_SLOT: "1"
+      GNP_SAVE_MODE: "Continue"
+      GNP_GAME_MODE: "Normal"
+      GNP_SAVE_INTERVAL: "600"
+      GNP_SKIP_NETWORK_ACCESSIBILITY_TEST: "true"
+      GNP_OWNER_STEAM_IDS: ""
+      GNP_VERBOSE_LOGGING: "false"
+      GNP_FILTER_WINE_LOGS: "true"
+      GNP_EXTRA_ARGS: ""
+    volumes:
+      - ./data/steam:/opt/steam
+      - ./data/server:/opt/games/server
+      - ./data/config:/opt/games/config
+      - ./data/saves:/opt/games/saves
+      - ./data/backups:/opt/games/backups
+      - ./data/wine:/opt/wine
